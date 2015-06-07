@@ -21,6 +21,7 @@ namespace rapide
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string defFileDirectory = Directory.GetCurrentDirectory();
         public MainWindow()
         {
             InitializeComponent();
@@ -28,15 +29,15 @@ namespace rapide
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
             ofd.Filter = "(*.txt)|*.txt|(*.pdf)|*.pdf|(*.epub)|*.epub";
 
 
             ofd.InitialDirectory = defFileDirectory;
 
-            DialogResult result = ofd.ShowDialog();
+            Nullable<bool> result = ofd.ShowDialog();
 
-            if (result == DialogResult.OK)
+            if (result == true)
             {
                 int fIndex = ofd.FilterIndex;
                 string fileName = ofd.FileName;
@@ -54,7 +55,6 @@ namespace rapide
                 }
                 CleanText.MatchAndReplace(txtbxEditor.Text);
             }
-            ofd.Dispose();
         }
     }
 }

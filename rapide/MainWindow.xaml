@@ -5,13 +5,14 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="108*"/>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="23*"/>
             <ColumnDefinition Width="409*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="buttonLoad_Click"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnSpread" Content="Spreed" HorizontalAlignment="Left" Margin="324.253,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-        <TextBox x:Name="txtbxEditor" HorizontalAlignment="Left" Height="230" Margin="10,80,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnLoad_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSpread" Content="Spreed" HorizontalAlignment="Left" Margin="324,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2"/>
+        <TextBox x:Name="txtbxEditor" HorizontalAlignment="Left" Height="230" Margin="10,80,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Window>
