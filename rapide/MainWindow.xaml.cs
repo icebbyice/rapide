@@ -29,8 +29,9 @@ namespace rapide
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
+            //open new dialog box
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-            ofd.Filter = "(*.txt)|*.txt|(*.pdf)|*.pdf|(*.epub)|*.epub";
+            ofd.Filter = "Input files|*.txt;*.pdf;*.epub"/*"(*.txt)|*.txt|(*.pdf)|*.pdf|(*.epub)|*.epub"*/;
 
 
             ofd.InitialDirectory = defFileDirectory;
