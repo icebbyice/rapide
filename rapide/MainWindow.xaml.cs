@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace rapide
 {
@@ -23,6 +24,37 @@ namespace rapide
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "(*.txt)|*.txt|(*.pdf)|*.pdf|(*.epub)|*.epub";
+
+
+            ofd.InitialDirectory = defFileDirectory;
+
+            DialogResult result = ofd.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                int fIndex = ofd.FilterIndex;
+                string fileName = ofd.FileName;
+                switch (fIndex)
+                {
+                    case 1:
+                        txtbxEditor.Text = File.ReadAllText(ofd.FileName);
+                        break;
+                    case 2:
+                        txtbxEditor.Text = PdfOps.ExtractTextFromPdf(ofd.FileName);
+                        break;
+                    case 3:
+                        txtbxEditor.Text = EpubOps.ExtractTextFromEpub(ofd.FileName);
+                        break;
+                }
+                CleanText.MatchAndReplace(txtbxEditor.Text);
+            }
+            ofd.Dispose();
         }
     }
 }
