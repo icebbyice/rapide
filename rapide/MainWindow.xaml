@@ -1,4 +1,4 @@
-﻿<Window x:Name="windowMain" x:Class="rapide.MainWindow"
+﻿<Window x:Class="rapide.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="rapide" Height="350" Width="525">
@@ -10,9 +10,9 @@
             <ColumnDefinition Width="409*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnLoad_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnSpread" Content="Spreed" HorizontalAlignment="Left" Margin="324,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2"/>
-        <TextBox x:Name="txtbxEditor" HorizontalAlignment="Left" Height="230" Margin="10,80,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="3"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="btnSave_Click"/>
+        <Button x:Name="btnSpread" Content="Spreed" HorizontalAlignment="Left" Margin="324,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Click="btnSpread_Click"/>
+        <TextBox x:Name="txtbxEditor" HorizontalAlignment="Left" Height="230" Margin="10,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Window>

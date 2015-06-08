@@ -57,5 +57,55 @@ namespace rapide
                 CleanText.MatchAndReplace(txtbxEditor.Text);
             }
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //open new save file dialog
+            Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
+            sfd.CreatePrompt = true;
+            sfd.OverwritePrompt = true;
+
+            sfd.DefaultExt = "txt";
+            sfd.Filter = "rapide file|*.txt";
+            sfd.InitialDirectory = defFileDirectory;
+
+            Nullable<bool> result = sfd.ShowDialog();
+            if (result == true)
+            {
+                File.WriteAllText(sfd.FileName, txtbxEditor.Text);
+
+            }
+        }
+
+        private void btnSpread_Click(object sender, RoutedEventArgs e)
+        {
+            if (ErrorDisplayNoTextCheck())
+            {
+                return;
+            }
+            else
+            {
+                Spreader.SetUpSpreadText(txtbxEditor.Text);
+                //Spreader.SetUpSpreedText(txtInput.Text);
+                SpreadWindow spread = new SpreadWindow();
+                App.Current.MainWindow = spread;
+                this.Close();
+                spread.Show();
+            }
+        }
+
+        private bool ErrorDisplayNoTextCheck()
+        {
+            if (txtbxEditor.Text == "")
+            {
+                MessageBox.Show("Please load or enter text.", "rapide > Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
