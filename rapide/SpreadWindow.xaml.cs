@@ -36,7 +36,7 @@ namespace rapide
         }
 
         private bool inChange = false;
-
+        private Paragraph paragraph;
         public void ChangePosition(int value)
         {
             if (!inChange)
@@ -47,8 +47,8 @@ namespace rapide
                     txtbxScroller.Text = value.ToString();
                     hsbTextScroller.Value = value - 1;
                     rtbDisplay.Document.Blocks.Clear();
-                    var FlowDocument = new FlowDocument();
-                    FlowDocument.TextAlignment = TextAlignment.Center;
+                    this.paragraph = new Paragraph();
+                    rtbDisplay.Document = new FlowDocument(paragraph);
                     var count = Spreader.spreadText[value - 1].Count(x => Char.IsLetterOrDigit(x));
                     int paddingWidth = 0;
                     string direction = "left";
@@ -118,21 +118,35 @@ namespace rapide
                     {
                         output = PadText.Right(Spreader.spreadText[value - 1], paddingWidth);
                     }
-                    FlowDocument.Blocks.Add(new Paragraph(new Run(output)));
-                    rtbDisplay.Document = FlowDocument;
-
+                    seperateOutputs(output, redChar);
+                    paragraph.Inlines.Add(new Run(prered));
+                    paragraph.Inlines.Add(new Run(redCharacter)
+                    {
+                        Foreground = Brushes.Red
+                    });
                 }
             }
             inChange = false;
+        }
+
+        private string prered;
+        private string redCharacter;
+        private string postred;
+
+
+        private void seperateOutputs(string i, int r)
+        {
+           
         }
 
         private void hsbTextScroller_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (!inChange)
             {
-            ChangePosition(Convert.ToInt32(hsbTextScroller.Value + 1));
-        }
+                ChangePosition(Convert.ToInt32(hsbTextScroller.Value + 1));
+            }
 
+        }
     }
 }
 
