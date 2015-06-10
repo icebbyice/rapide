@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PadText.cs" />
     <Compile Include="Spreader.cs" />
     <Compile Include="SpreadWindow.xaml.cs">
       <DependentUpon>SpreadWindow.xaml</DependentUpon>

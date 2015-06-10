@@ -47,7 +47,80 @@ namespace rapide
                     txtbxScroller.Text = value.ToString();
                     hsbTextScroller.Value = value - 1;
                     rtbDisplay.Document.Blocks.Clear();
-                    rtbDisplay.Document.Blocks.Add(new Paragraph(new Run(Spreader.spreadText[value-1])));
+                    var FlowDocument = new FlowDocument();
+                    FlowDocument.TextAlignment = TextAlignment.Center;
+                    var count = Spreader.spreadText[value - 1].Count(x => Char.IsLetterOrDigit(x));
+                    int paddingWidth = 0;
+                    string direction = "left";
+                    int redChar = 0;
+                    string output;
+                    switch (count)
+                    {
+                        case 1:
+                            paddingWidth = 0;
+                            redChar = 1;
+                            break;
+                        case 2:
+                            paddingWidth = 1;
+                            direction = "right";
+                            redChar = 2;
+                            break;
+                        case 3:
+                            paddingWidth = 0;
+                            redChar = 2;
+                            break;
+                        case 4:
+                            paddingWidth = 1;
+                            redChar = 2;
+                            break;
+                        case 5:
+                            paddingWidth = 2;
+                            redChar = 2;
+                            break;
+                        case 6:
+                            paddingWidth = 1;
+                            redChar = 3;
+                            break;
+                        case 7:
+                            paddingWidth = 2;
+                            redChar = 3;
+                            break;
+                        case 8:
+                            paddingWidth = 3;
+                            redChar = 3;
+                            break;
+                        case 9:
+                            paddingWidth = 4;
+                            redChar = 3;
+                            break;
+                        case 10:
+                            paddingWidth = 3;
+                            redChar = 4;
+                            break;
+                        case 11:
+                            paddingWidth = 4;
+                            redChar = 4;
+                            break;
+                        case 12:
+                            paddingWidth = 3;
+                            redChar = 4;
+                            break;
+                        default:
+                            paddingWidth = 4;
+                            redChar = 4;
+                            break;
+                    }
+                    if (direction == "left")
+                    {
+                        output = PadText.Left(Spreader.spreadText[value - 1], paddingWidth);
+                    }
+                    else
+                    {
+                        output = PadText.Right(Spreader.spreadText[value - 1], paddingWidth);
+                    }
+                    FlowDocument.Blocks.Add(new Paragraph(new Run(output)));
+                    rtbDisplay.Document = FlowDocument;
+
                 }
             }
             inChange = false;
@@ -55,6 +128,8 @@ namespace rapide
 
         private void hsbTextScroller_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (!inChange)
+            {
             ChangePosition(Convert.ToInt32(hsbTextScroller.Value + 1));
         }
 
