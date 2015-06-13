@@ -118,12 +118,14 @@ namespace rapide
                     {
                         output = PadText.Right(Spreader.spreadText[value - 1], paddingWidth);
                     }
+                    //stackoverflow
                     seperateOutputs(output, redChar);
                     paragraph.Inlines.Add(new Run(prered));
                     paragraph.Inlines.Add(new Run(redCharacter)
                     {
                         Foreground = Brushes.Red
                     });
+                    paragraph.Inlines.Add(new Run(postred));
                 }
             }
             inChange = false;
@@ -136,7 +138,15 @@ namespace rapide
 
         private void seperateOutputs(string i, int r)
         {
-           
+            if (r == 1)
+            {
+
+            }
+            for (int x = 0; x < r; x++)
+            {
+                finalString += " ";
+            }
+            return finalString;
         }
 
         private void hsbTextScroller_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
